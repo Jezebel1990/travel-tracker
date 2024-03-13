@@ -4,15 +4,13 @@ const pg = require("pg");
 require('dotenv').config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 
 const db = new pg.Client({
-  user: "postgres",
-  host: "localhost",
-  database: "world",
-  password: process.env.DB_PASSWORD,
-  port: 5432,
-});
+  connectionString: process.env.DATABASE_URL,
+
+}); 
+
 db.connect();
 
 app.use(bodyParser.urlencoded({ extended: true }));
